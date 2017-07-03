@@ -1,0 +1,12 @@
+#Functions in Scala
+-- Factorial example
+-- Like how a variable is defined using block. Function is defined in scala with arguments
+-- Factorial 5= 5*4*3*2*1
+-- Here no need to say return statement explicitly, return  type is mentioned while defining like variable and the last variable will be returned,
+-- And if the invalid return type is returned than specified, type mismatch error will be thrown
+def fact(i: Int): Int= {
+var res= 1
+for(e <- i to 1 by -1)
+res *= e
+res
+}
