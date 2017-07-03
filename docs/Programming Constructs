@@ -1,0 +1,46 @@
+#Programming Constructs in Scala
+-- Print functions are of two types as below
+println("This will take the cursor to the new line")
+print("This will take the cursor at the end of the statement")
+
+--math is a package object which is entirely available to the scala libary, scala.math which contains many functions to do log, trig, numeric operations
+-- Assigning data to a variable using a block
+scala> val a= {
+     | val i= 1
+     | val j=math.pow(2,10)
+     | j-i
+     | }
+a: Double = 1023.0
+
+--math.random will always will a double value between 0 and 1.
+
+#If clause in scala, it is like in java only
+-- go to paste mode, :paste
+val i: Int=10
+val j: Int=20
+if(i > j){
+println("i is greater than j")
+}
+else if(i < j){
+println("i is lesser than j")
+}
+else
+println("i is equal to j")
+
+#while loop is also similar to how it is done in Java
+-- example, print the values from 100 to 90 using while loop
+var ctr=100
+while(ctr>90){
+println(ctr)
+ctr= ctr-1
+}
+
+#for loop
+--example, print the vales from 1 to 10 using simple for loop
+-- i to j by -2 can be used for decrementing the value
+val i=1
+val j=10
+for(e <- i to j by 1)
+{
+println(e)
+}
