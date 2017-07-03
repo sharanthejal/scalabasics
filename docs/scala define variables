@@ -1,0 +1,26 @@
+#Scala 
+There are mainly two different types of variables avaialble in Scala
+val and var
+-- val is immutable, once defined the value can't be changed.
+-- var is mutable, value can be changed after defining the variable
+-- semicolon ending is not necessary while declaring the variables
+-- Initialization is mandataory while defining variables
+example:
+val i=10
+i= i+10 // it will throw an error
+
+var i=10
+i= i+10 //it is valid
+
+-- If the datatype is not defined based on the given data, datatype will be provided by scala
+
+#Define variables with pre-defined datatype
+syntax:
+var/val variable_name: data type =value
+val i: Int =10
+
+-- Different datatypes avaialble in scala are Byte, Short, Int, Long, Float, Double, Char, String, Boolean
+val i: Long = 10L
+val i: Long = 10l
+val j: Float = 10.0F
+val j: Float = 10.0f
