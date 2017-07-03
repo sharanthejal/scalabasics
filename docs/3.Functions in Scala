@@ -10,3 +10,8 @@ for(e <- i to 1 by -1)
 res *= e
 res
 }
+
+#Recursive Function
+def rFact(i: Int): Int = { if(i==1) 1 else i*rFact(i-1) }
+
+
