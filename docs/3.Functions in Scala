@@ -15,3 +15,17 @@ res
 def rFact(i: Int): Int = { if(i==1) 1 else i*rFact(i-1) }
 
 
+#Nested Functions
+-- A function defined inside another function definition. But those functions can't be accessed outside of the outer function
+Example:
+-- ncr = n!/(n-r)!*r!
+
+def nCr(n: Int, r: Int)= {
+ def fact(i: Int): Int= {
+  var res= 1
+   for(e <- i to 1 by -1)
+    res *= e
+    res
+  }
+fact(n)/(fact(n-r)*fact(r))
+}
