@@ -1,0 +1,29 @@
+#Operators in Scala
+-- All the operators in scala behaves like functions
++, -, %, *,
+var: Int a=10;
+scala> a.
+!=   -    ==    ^           compareTo     intValue        isPosInfinity   isValidShort   round        toBinaryString   toFloat         toRadians   underlying
+%    /    >     abs         doubleValue   isInfinite      isValidByte     isWhole        self         toByte           toHexString     toShort     until
+&    <    >=    byteValue   floatValue    isInfinity      isValidChar     longValue      shortValue   toChar           toInt           unary_+     |
+*    <<   >>    ceil        floor         isNaN           isValidInt      max            signum       toDegrees        toLong          unary_-
++    <=   >>>   compare     getClass      isNegInfinity   isValidLong     min            to           toDouble         toOctalString   unary_~
+
+-- It will show the options as above when the dot operator is provided.
+
+scala> a.+
+                           def +(x: Char): Int        def +(x: Int): Int     def +(x: Byte): Int      def +(x: Short): Int
+def +(x: Double): Double   def +(x: String): String   def +(x: Long): Long   def +(x: Float): Float
+
+-- there are different overloaded functions available for '+' operator itself as above. And the result value is based on input values.
+
+scala> a.+(20.5f)
+res39: Float = 30.5
+
+-- as it is sum of int and float output is float.
+
+-- Either a.+(b) can be used or a + b cab be used i.e... Space
+
+-- equals or == is same in Scala. It compares only content not the reference like in java.
+
+-- eq method can be used for comparing refernces
