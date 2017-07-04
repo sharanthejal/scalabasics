@@ -1,0 +1,60 @@
+#Scala Objects or Singleton Classes
+-- Main function should be defined in Object
+-- Object is like singleton class in java
+
+-- Use either IntelliJ or Eclipse but IntelliJ is the preferable one for developing scala programs.
+-- And install sbt also(Simple Build Tool), it's like Maven in Java.
+-- Main method should be placed inside Object only not inside class in scala.
+-- Create a project and create object in it and place a main method as below.
+-- We can run the below Main method in different ways 
+	 1.Go to project directory and run sbt console
+		Main.main(Array(" "))
+	 2.sbt run can be used which will take the main method of the project. 	
+-- With Arguments
+	sbt "run arguments" 
+Ex: sbt "run 6 3"	
+
+-- Unlike in java Filename saved need not be same as object name, in java class name and the class name saved should be same right but in scala it's not the case. It can be different.
+
+Example:
+object Main {
+  def main(args: Array[String]): Unit = {
+
+    println("Inside main function of Object")
+  }
+}
+
+-- :javap can be used to decompile the class file back to the source code from the byte code.
+Syntax:
+scala> :javap -p Main$
+Compiled from "Main.scala"
+public final class Main$ {
+  public static Main$ MODULE$;
+  public static {};
+  public void main(java.lang.String[]);
+  private Main$();
+}
+-- It gives the source code of the given program
+-- '$' should be used at the end for the object classes.
+
+-- Another Example which takes input from user
+object Combination {
+  def nCr(n: Int, r: Int)= {
+    def fact(i: Int): Int= {
+      var res= 1
+      for(e <- i to 1 by -1)
+        res *= e
+      res
+    }
+    fact(n)/(fact(n-r)*fact(r))
+  }
+  def main(args: Array[String]): Unit ={
+    val n=args(0).toInt
+    val r=args(1).toInt
+    val c=nCr(n,r).toInt
+    println("There are "+c+"combinations for "+r+" in "+n+" elements")
+  }
+}
+
+Running
+sbt "run 6 4"
