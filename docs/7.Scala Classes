@@ -89,49 +89,6 @@ class OrderItem(
     ")"
 }
 
-class OrderItem(
-                 orderItemId: Int,
-                 orderItemOrderId: Int,
-                 orderItemProductId: Int,
-                 orderItemQuantity: Int,
-                 orderItemSubtotal: Float,
-                 orderItemProductPrice: Float
-               ) {
-  require(
-    orderItemSubtotal == orderItemQuantity * orderItemProductPrice, "Invalid orderItemSubtotal " + orderItemSubtotal
-  )
-  //Additional constructor
-  def this(
-            orderItemId: Int,
-            orderItemOrderId: Int,
-            orderItemProductId: Int,
-            orderItemQuantity: Int,
-            orderItemProductPrice: Float
-          ) = {
-    //Invoking default constructor
-    this(orderItemId,
-      orderItemOrderId,
-      orderItemProductId,
-      orderItemQuantity,
-      orderItemQuantity * orderItemProductPrice,
-      orderItemProductPrice)
-  }
-  override def toString: String = "OrderItem(" +
-    orderItemId +
-    "," +
-    orderItemOrderId +
-    "," +
-    orderItemProductId +
-    "," +
-    orderItemQuantity +
-    "," +
-    orderItemSubtotal +
-    "," +
-    orderItemProductPrice +
-    ")"
-}
-
-
 scala> :javap -p OrderItem
 Compiled from "OrderItem.scala"
 public class OrderItem {
