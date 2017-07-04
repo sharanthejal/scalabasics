@@ -110,9 +110,11 @@ java.lang.IllegalArgumentException: requirement failed: Invalid orderItemSubtota
   at scala.Predef$.require(Predef.scala:277)
   ... 40 elided
 
+-- With six arguments constructor is called.
 scala> val oi=new OrderItem(1,2,3,5,100,20)
 oi: OrderItem = OrderItem(1,2,3,5,100.0,20.0)
 
+-- With five arguments constructor is called where internally it will call the default constructor.
 scala> val oi=new OrderItem(1,2,3,5,20)
 oi: OrderItem = OrderItem(1,2,3,5,100.0,20.0)
 
