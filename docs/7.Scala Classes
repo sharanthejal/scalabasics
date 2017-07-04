@@ -37,3 +37,125 @@ public class Department {
   public void departmentName_$eq(java.lang.String);
   public Department(int, java.lang.String);
 }
+
+#Creating Objects
+-- Mutable and Immutable objects
+-- We have to define the type of the object we are going to store the object while defining itself. Here we are using immutable objects
+val d=new Department(1,"Electric")
+
+
+#Multiple Constructors
+-- When multiple constructors are created, other constructors should call the default constructor in the first line of their code.
+
+class OrderItem(
+                 orderItemId: Int,
+                 orderItemOrderId: Int,
+                 orderItemProductId: Int,
+                 orderItemQuantity: Int,
+                 orderItemSubtotal: Float,
+                 orderItemProductPrice: Float
+               ) {
+  require(
+    orderItemSubtotal == orderItemQuantity * orderItemProductPrice, "Invalid orderItemSubtotal " + orderItemSubtotal
+  )
+  //Additional constructor
+  def this(
+            orderItemId: Int,
+            orderItemOrderId: Int,
+            orderItemProductId: Int,
+            orderItemQuantity: Int,
+            orderItemProductPrice: Float
+          ) = {
+    //Invoking default constructor
+    this(orderItemId,
+      orderItemOrderId,
+      orderItemProductId,
+      orderItemQuantity,
+      orderItemQuantity * orderItemProductPrice,
+      orderItemProductPrice)
+  }
+  override def toString: String = "OrderItem(" +
+    orderItemId +
+    "," +
+    orderItemOrderId +
+    "," +
+    orderItemProductId +
+    "," +
+    orderItemQuantity +
+    "," +
+    orderItemSubtotal +
+    "," +
+    orderItemProductPrice +
+    ")"
+}
+
+class OrderItem(
+                 orderItemId: Int,
+                 orderItemOrderId: Int,
+                 orderItemProductId: Int,
+                 orderItemQuantity: Int,
+                 orderItemSubtotal: Float,
+                 orderItemProductPrice: Float
+               ) {
+  require(
+    orderItemSubtotal == orderItemQuantity * orderItemProductPrice, "Invalid orderItemSubtotal " + orderItemSubtotal
+  )
+  //Additional constructor
+  def this(
+            orderItemId: Int,
+            orderItemOrderId: Int,
+            orderItemProductId: Int,
+            orderItemQuantity: Int,
+            orderItemProductPrice: Float
+          ) = {
+    //Invoking default constructor
+    this(orderItemId,
+      orderItemOrderId,
+      orderItemProductId,
+      orderItemQuantity,
+      orderItemQuantity * orderItemProductPrice,
+      orderItemProductPrice)
+  }
+  override def toString: String = "OrderItem(" +
+    orderItemId +
+    "," +
+    orderItemOrderId +
+    "," +
+    orderItemProductId +
+    "," +
+    orderItemQuantity +
+    "," +
+    orderItemSubtotal +
+    "," +
+    orderItemProductPrice +
+    ")"
+}
+
+
+scala> :javap -p OrderItem
+Compiled from "OrderItem.scala"
+public class OrderItem {
+  private final int orderItemId;
+  private final int orderItemOrderId;
+  private final int orderItemProductId;
+  private final int orderItemQuantity;
+  private final float orderItemSubtotal;
+  private final float orderItemProductPrice;
+  public java.lang.String toString();
+  public static final java.lang.String $anonfun$new$1(OrderItem);
+  public OrderItem(int, int, int, int, float, float);
+  public OrderItem(int, int, int, int, float);
+  private static java.lang.Object $deserializeLambda$(java.lang.invoke.SerializedLambda);
+}
+
+scala> val oi=new OrderItem(1,2,3,1,100,10)
+java.lang.IllegalArgumentException: requirement failed: Invalid orderItemSubtotal 100.0
+  at scala.Predef$.require(Predef.scala:277)
+  ... 40 elided
+
+scala> val oi=new OrderItem(1,2,3,5,100,20)
+oi: OrderItem = OrderItem(1,2,3,5,100.0,20.0)
+
+scala> val oi=new OrderItem(1,2,3,5,20)
+oi: OrderItem = OrderItem(1,2,3,5,100.0,20.0)
+
