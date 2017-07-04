@@ -1,0 +1,39 @@
+#Scala Classes
+-- A class in scala can be defined in several ways
+-- The below one will be having only one parameterized constructor with the below arguments. And class won't be having any instance variables
+-- The source code can be checked using, here no need to use '$' at the end as it is a class
+-- When using sbt, when changes are done to some file rebuild the project or module and the changes will be reflected in the sbt console
+
+
+class Department(departmentId: Int, departmentName:String)
+scala> :javap -p Department
+Compiled from "Department.scala"
+public class Department {
+  public Department(int, java.lang.String);
+}
+
+-- The below class will have instance variables and they are final, as we are using 'val'. And no setters will be there only getters and constructor.
+class Department(val departmentId: Int, val departmentName:String)
+scala> :javap -p Department
+Compiled from "Department.scala"
+public class Department {
+  private final int departmentId;
+  private final java.lang.String departmentName;
+  public int departmentId();
+  public java.lang.String departmentName();
+  public Department(int, java.lang.String);
+}
+
+-- The below class will have instance variables, as we are using 'var'. So both setters and getters will be there.
+class Department(var departmentId: Int, var departmentName:String)
+scala> :javap -p Department
+Compiled from "Department.scala"
+public class Department {
+  private int departmentId;
+  private java.lang.String departmentName;
+  public int departmentId();
+  public void departmentId_$eq(int);
+  public java.lang.String departmentName();
+  public void departmentName_$eq(java.lang.String);
+  public Department(int, java.lang.String);
+}
