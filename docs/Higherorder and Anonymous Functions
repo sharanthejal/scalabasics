@@ -1,0 +1,23 @@
+#Higher Order and Anonymous Functions
+-- In Scala, a function can be passed as a parameter variable and also a return variable.
+Example:
+-- When passing the function parameter the below declaration of function is function which take Int as input and Int as output.
+def sum(f: Int => Int, a: Int, b: Int): Int ={
+ if(a > b) 0 else f(a)+ sum(f, a+1, b)
+}
+
+-- If it is a single line return directly as a variable we can delcare as below
+
+def id(i: Int)= i
+
+def sqr(i: Int)= math.pow(i,2).toInt
+
+def cube(i: Int)= math.pow(i,3).toInt
+
+sum(id,1,10)
+55
+sum(sqr,1,10)
+385
+sum(cube,1,10)
+3025
+
