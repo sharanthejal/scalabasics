@@ -1,0 +1,42 @@
+#Scala Collections 
+There are mainly two types of collections available in Scala.
+1.Mutable
+2.Immutable
+
+Simple collection:
+-- Range
+1 to 100
+res9: scala.collection.immutable.Range.Inclusive = Range 1 to 100
+
+-- Range collection is using partition method where each and every element in the collection is identified by '_' partitioned and returned.
+scala> val(even,odd)=(1 to 100).partition(_ % 2 == 0)
+even: scala.collection.immutable.IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100)
+odd: scala.collection.immutable.IndexedSeq[Int] = Vector(1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99)
+
+-- Immutable collections are those which can't be updated for the existing data where as  Mutable collections can update.
+
+-- Array is a Mutable collection.
+val a =Array(1,2,3)
+a.update(0,123)
+print(a)  // It will print the address actually, just for undestanding kept like that.
+123,2,3
+
+--Other way of updating data in mutable collection is as below. It will internally call the update method.
+a[2]=500
+a
+123,500,3
+
+a= a :+ 4  //This will throw an error as initially Array is initialized using val. Instead initialize using var, it won't throw any error. Data will be added.
+
+-- Vector is a Immutable collection. List also immutable.
+
+var l=List(1,2,3)
+scala> l= l:+5
+l: List[Int] = List(1, 2, 3, 5)
+
+-- But updation is not possible
+scala> l[1]=5
+<console>:1: error: identifier expected but integer literal found.
+l[1]=5
+  ^
+  
