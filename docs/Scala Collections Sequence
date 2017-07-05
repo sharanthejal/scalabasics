@@ -1,0 +1,16 @@
+#Scala Collections Sequence
+-- It is mainly of two types
+1. Indexed Sequence
+2. Linear Sequence
+
+-- Sequence have length.
+-- Elements in sequence can be accessed using prefix.
+-- List is a case class, so only no need to use new operator while creating object. It will invoke apply method. //val l=List(1,2,3)
+Example:
+scala.Array  					//Mutable
+scala.collection.immutable.List //Immutable
+
+val l=List(1,400,3)
+-- In Scala parenthesis() are used to access the elements in the collection unlike in Java where square brackets[] are used.
+scala> l(1)
+res2: Int = 400
