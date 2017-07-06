@@ -14,3 +14,74 @@ val l=List(1,400,3)
 -- In Scala parenthesis() are used to access the elements in the collection unlike in Java where square brackets[] are used.
 scala> l(1)
 res2: Int = 400
+
+-- List have n number of methods that can be operated on it. Either by giving dot operator or space character and by using tab one can see a list of functions that can be operated on Lists.
+-- Here l is the list, used space and then pressed tab in scala REPL
+scala> l
+++             combinations    filter            indexOf              lengthCompare   product             sameElements    tail           toTraversable
+++:            companion       filterNot         indexOfSlice         lift            productArity        scan            tails          toVector
++:             compose         find              indexWhere           map             productElement      scanLeft        take           transpose
+/:             contains        flatMap           indices              mapConserve     productIterator     scanRight       takeRight      union
+:+             containsSlice   flatten           init                 max             productPrefix       segmentLength   takeWhile      unzip
+::             copyToArray     fold              inits                maxBy           reduce              seq             to             unzip3
+:::            copyToBuffer    foldLeft          intersect            min             reduceLeft          size            toArray        updated
+:\             corresponds     foldRight         isDefinedAt          minBy           reduceLeftOption    slice           toBuffer       view
+WithFilter     count           forall            isEmpty              mkString        reduceOption        sliding         toIndexedSeq   withFilter
+addString      diff            foreach           isTraversableAgain   nonEmpty        reduceRight         sortBy          toIterable     zip
+aggregate      distinct        genericBuilder    iterator             orElse          reduceRightOption   sortWith        toIterator     zipAll
+andThen        drop            groupBy           last                 padTo           repr                sorted          toList         zipWithIndex
+apply          dropRight       grouped           lastIndexOf          par             reverse             span            toMap
+applyOrElse    dropWhile       hasDefiniteSize   lastIndexOfSlice     partition       reverseIterator     splitAt         toSeq
+canEqual       endsWith        hashCode          lastIndexWhere       patch           reverseMap          startsWith      toSet
+collect        equals          head              lastOption           permutations    reverse_:::         stringPrefix    toStream
+collectFirst   exists          headOption        length               prefixLength    runWith             sum             toString
+
+-- As list is immutable it will do the functions mentioned and returns the List.
+-- Let us see few functions
+
+-- ++ Operator is used to add two collections. Here we added two collections List[Int] and Range which finally gives List[Int] as Output.
+scala> val m=33 to 40
+m: scala.collection.immutable.Range.Inclusive = Range(33, 34, 35, 36, 37, 38, 39, 40)
+
+scala> l= l ++ m
+l: List[Int] = List(1, 2, 3, 4, 5, 6, 33, 34, 35, 36, 37, 38, 39, 40)
+
+-- For adding a single element at the starting or ending, +: or :+ operators can be used.
+-- As seen below, even though 400 element is added unless it is returned to some variable it is not stored.
+var l=List(1,2,3)
+scala> l :+ 400
+res57: List[Int] = List(1, 2, 3, 400)
+scala> l
+res58: List[Int] = List(1, 2, 3)
+scala> l= l :+ 400
+l: List[Int] = List(1, 2, 3, 400)
+scala> l
+res59: List[Int] = List(1, 2, 3, 400)
+
+-- Like that toArray is one method which converts the current list to array.
+scala> var a= l.toArray
+a: Array[Int] = Array(1, 2, 3, 400)
+
+-- Partition is one more important function 
+--    def partition(p: Int => Boolean): (List[Int], List[Int])
+scala> var(even,odd)= l partition(x => x%2==0)
+even: List[Int] = List(2, 400, 20, 22, 24, 26, 28, 30)
+odd: List[Int] = List(1, 3, 21, 23, 25, 27, 29)
+
+-- Alternative way of doing it. Here underscore symbol indicates each and every element of collection(here list)
+scala> var(even,odd)= l partition(_%2 == 0)
+even: List[Int] = List(2, 400, 20, 22, 24, 26, 28, 30)
+odd: List[Int] = List(1, 3, 21, 23, 25, 27, 29)
+
+-- Find the size of the collection using size function
+scala> l.size
+res75: Int = 15
+
+-- Like that so many useful functions are there min, max, sorted, reverse which will reverse the collection
+
+-- Foreach Function, like partition one can loop over each and every element in collection and apply the function
+scala> l foreach
+   final override def foreach[U](f: Int => U): Unit
+   
+scala> l foreach(x => println(x*x+" "))
+1 4 9 160000 400 441 484 529 576 625 676 729 784 841 900
