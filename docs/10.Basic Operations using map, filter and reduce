@@ -1,0 +1,52 @@
+#Scala Collections- Basic Operations such as map, filter and reduce
+-- Create one case class for doing the above operations
+-- Create case class for Order
+-- Create a collection of type list
+
+case class Order(
+                  orderId: Int,
+                  orderDate: String,
+                  orderCustomerId: Int,
+                  orderStatus: String
+                )
+				
+val os = List(
+  Order(1, "2017-01-01", 100, "COMPLETE"), 
+  Order(2, "2017-01-01", 20, "CLOSED"),
+  Order(3, "2017-01-01", 301, "PENDING"),
+  Order(4, "2017-01-01", 202, "CLOSED"),
+  Order(5, "2017-01-01", 3013, "COMPLETE"),
+  Order(6, "2017-01-01", 203, "PENDING"),
+  Order(7, "2017-01-01", 3014, "COMPLETE"),
+  Order(8, "2017-01-01", 20, "NEW"),
+  Order(9, "2017-01-01", 301, "PENDING"),
+  Order(10, "2017-01-01", 2, "CLOSED"),
+  Order(11, "2017-01-01", 1, "COMPLETE"),
+  Order(12, "2017-01-01", 3, "NEW"),
+  Order(13, "2017-01-01", 301, "COMPLETE")
+)
+
+-- Explore map functions
+-- Explore fold/reduce functions
+-- We can also use fold instead of reduce
+-- But reduce is more important with respect to Spark
+
+-- Filter  def filter(p: Order => Boolean): List[Order], It will give the values which are true
+
+os.filter(x => x.orderStatus == "COMPLETE")
+scala> val orderCompleted= os.filter(x => x.orderStatus.equals("COMPLETE"))
+orderCompleted: List[Order] = List(Order(1,2017-01-01,100,COMPLETE), Order(5,2017-01-01,3013,COMPLETE), Order(7,2017-01-01,3014,COMPLETE), Order(11,2017-01-01,1,COMPLETE), Order(13,2017-01-01,301,COMPLETE))
+
+-- Map Function def map[B](f: Order => B): scala.collection.TraversableOnce[B]
+
+scala> os.map(x => x.orderDate.replace("-","").toInt), it will give only the returned values in the map
+m: List[Int] = List(20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101)
+
+-- Reduce function, def reduce[A1 >: Int](op: (A1, A1) => A1): A1
+
+scala> val sumOfEven= (1 to 100).filter(_ % 2 == 0).reduce((total,element) => total+element)
+sumOfEven: Int = 2550
+
+scala> val sumOfCompletedOrderId= os.filter(_.orderStatus.equalsIgnoreCase("complete")).map(_.orderId).reduce((e,t) => e+t)
+sumOfCompletedOrderId: Int = 37
+
