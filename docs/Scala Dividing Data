@@ -1,0 +1,94 @@
+#11.Scala Dividing Data
+There are mainly two functions which can be used for dividing the data present in collections
+1. partition
+2. groupBy
+
+-- par will be used along with partition if the collection is big in size so that partitions are done in parallel
+case class Order(
+                  orderId: Int,
+                  orderDate: String,
+                  orderCustomerId: Int,
+                  orderStatus: String
+                )
+				
+val os = List(
+  Order(1, "2017-01-01", 100, "COMPLETE"), 
+  Order(2, "2017-01-01", 20, "CLOSED"),
+  Order(3, "2017-01-01", 301, "PENDING"),
+  Order(4, "2017-01-01", 202, "CLOSED"),
+  Order(5, "2017-01-01", 3013, "COMPLETE"),
+  Order(6, "2017-01-01", 203, "PENDING"),
+  Order(7, "2017-01-01", 3014, "COMPLETE"),
+  Order(8, "2017-01-01", 20, "NEW"),
+  Order(9, "2017-01-01", 301, "PENDING"),
+  Order(10, "2017-01-01", 2, "CLOSED"),
+  Order(11, "2017-01-01", 1, "COMPLETE"),
+  Order(12, "2017-01-01", 3, "NEW"),
+  Order(13, "2017-01-01", 301, "COMPLETE")
+)
+
+-- Divide the List into two different categories i.e... Complete orders in one collection and others in one collection using partition
+-- partition method will check the boolean value for each element and keep in the first collection if it is true otherwise in second collection if it is false.
+scala> val (closed, notclosed)= os.partition(_.orderStatus=="COMPLETE")
+-- Alternative way of doing it
+val (closed, notclosed)= os.partition(x => x.orderStatus=="COMPLETE")
+
+scala> closed.foreach(println)
+Order(1,2017-01-01,100,COMPLETE)
+Order(5,2017-01-01,3013,COMPLETE)
+Order(7,2017-01-01,3014,COMPLETE)
+Order(11,2017-01-01,1,COMPLETE)
+Order(13,2017-01-01,301,COMPLETE)
+
+scala> notclosed.foreach(println)
+Order(2,2017-01-01,20,CLOSED)
+Order(3,2017-01-01,301,PENDING)
+Order(4,2017-01-01,202,CLOSED)
+Order(6,2017-01-01,203,PENDING)
+Order(8,2017-01-01,20,NEW)
+Order(9,2017-01-01,301,PENDING)
+Order(10,2017-01-01,2,CLOSED)
+Order(12,2017-01-01,3,NEW)
+
+-- grouped and groupBy
+--groupBy orderStatus
+
+scala> os.groupBy(_.orderStatus).foreach(println)
+(NEW,List(Order(8,2017-01-01,20,NEW), Order(12,2017-01-01,3,NEW)))
+(PENDING,List(Order(3,2017-01-01,301,PENDING), Order(6,2017-01-01,203,PENDING), Order(9,2017-01-01,301,PENDING)))
+(COMPLETE,List(Order(1,2017-01-01,100,COMPLETE), Order(5,2017-01-01,3013,COMPLETE), Order(7,2017-01-01,3014,COMPLETE), Order(11,2017-01-01,1,COMPLETE), Order(13,2017-01-01,301,COMPLETE)))
+(CLOSED,List(Order(2,2017-01-01,20,CLOSED), Order(4,2017-01-01,202,CLOSED), Order(10,2017-01-01,2,CLOSED)))
+
+
+-- os.grouped will return the Iterator and it will take the int as input
+scala> os.partition.grouped(4)
+
+--par method along with partition
+
+scala> os.par.partition(_.orderStatus=="COMPLETE")
+ 
+ scala> os.par.partition(_.orderStatus=="COMPLETE")._1.foreach(println)
+Order(1,2017-01-01,100,COMPLETE)
+Order(11,2017-01-01,1,COMPLETE)
+Order(5,2017-01-01,3013,COMPLETE)
+Order(7,2017-01-01,3014,COMPLETE)
+Order(13,2017-01-01,301,COMPLETE)
+
+scala> os.par.partition(_.orderStatus=="COMPLETE")._2.foreach(println)
+
+
+--- map and groupBy
+scala> os.groupBy(_.orderStatus).map(m => m._1 + "\t" +m._2.size).foreach(println)
+NEW     2
+PENDING 3
+COMPLETE        5
+CLOSED  3
+
+Order(2,2017-01-01,20,CLOSED)
+Order(3,2017-01-01,301,PENDING)
+Order(4,2017-01-01,202,CLOSED)
+Order(6,2017-01-01,203,PENDING)
+Order(9,2017-01-01,301,PENDING)
+Order(8,2017-01-01,20,NEW)
+Order(10,2017-01-01,2,CLOSED)
+Order(12,2017-01-01,3,NEW)
