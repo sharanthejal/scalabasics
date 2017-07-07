@@ -1,0 +1,67 @@
+#Scala Sorting Data on collections
+-- There are mainly three functions we will use for this 
+sorted
+sortBy
+sortWith
+
+-- The below one gives the ascending order collection by default, but what about descending order collection.
+-- With sorted directly we can't achieve that, we have to use sortBy or sortWith 
+scala> val ls=l.sorted
+ls: List[Int] = List(-2, 2, 4, 5, 5, 8, 21, 33, 66)
+
+case class Order(
+                  orderId: Int,
+                  orderDate: String,
+                  orderCustomerId: Int,
+                  orderStatus: String
+                )
+				
+val os = List(
+  Order(1, "2017-01-01", 100, "COMPLETE"), 
+  Order(2, "2017-01-01", 20, "CLOSED"),
+  Order(3, "2017-01-01", 301, "PENDING"),
+  Order(4, "2017-01-01", 202, "CLOSED"),
+  Order(5, "2017-01-01", 3013, "COMPLETE"),
+  Order(6, "2017-01-01", 203, "PENDING"),
+  Order(7, "2017-01-01", 3014, "COMPLETE"),
+  Order(8, "2017-01-01", 20, "NEW"),
+  Order(9, "2017-01-01", 301, "PENDING"),
+  Order(10, "2017-01-01", 2, "CLOSED"),
+  Order(11, "2017-01-01", 1, "COMPLETE"),
+  Order(12, "2017-01-01", 3, "NEW"),
+  Order(13, "2017-01-01", 301, "COMPLETE")
+)
+
+-- If we try to do ordering for the above List, the below error will come as there is no implicit Ordering provided for the Order class. For the Int class it will be there
+scala> os.sorted
+<console>:15: error: No implicit Ordering defined for Order.
+       os.sorted
+
+-- scala> os.sortBy(_.orderCustomerId).foreach(println)
+-- scala> os.sortBy(x => x.orderCustomerId).foreach(println)
+-- Either of the above can be used which will be sorted based on orderCustomerId value which is Int.
+Order(11,2017-01-01,1,COMPLETE)
+Order(10,2017-01-01,2,CLOSED)
+Order(12,2017-01-01,3,NEW)
+Order(2,2017-01-01,20,CLOSED)
+Order(8,2017-01-01,20,NEW)
+Order(1,2017-01-01,100,COMPLETE)
+Order(4,2017-01-01,202,CLOSED)
+Order(6,2017-01-01,203,PENDING)
+Order(3,2017-01-01,301,PENDING)
+Order(9,2017-01-01,301,PENDING)
+Order(13,2017-01-01,301,COMPLETE)
+Order(5,2017-01-01,3013,COMPLETE)
+Order(7,2017-01-01,3014,COMPLETE)
+          ^
+		  
+-- Let us see sortWith example, sorting first with orderCustomerId and then with orderId if both are equal.
+os.sortWith((a, b) => {
+  if(a.orderCustomerId > b.orderCustomerId)
+    false
+  else if(a.orderCustomerId < b.orderCustomerId)
+    true
+  else {
+    if(a.orderId > b.orderId)
+      false
+    else true}}).foreach(println)
