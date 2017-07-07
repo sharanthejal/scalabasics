@@ -1,0 +1,6 @@
+#Scala Sets
+-- There are mainly two types of sets avaiable in Scala.
+-- As we know, Set won't allow duplicate elements and it implements Traversable and Iterable. And Traversable is the base Trait for all the Collections.
+Immutable //default
+Mutable
+-- To get the mutable set have to invoke it using import collection.mutable.set 
