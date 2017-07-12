@@ -43,7 +43,8 @@ scala> os.map(x => x.orderDate.replace("-","").toInt), it will give only the ret
 m: List[Int] = List(20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 20170101)
 
 -- Reduce function, def reduce[A1 >: Int](op: (A1, A1) => A1): A1
-
+-- Initially total will be zero and each and every time element value will be the incoming value while iterating and returns the value 
+-- to total.(Aggregators)
 scala> val sumOfEven= (1 to 100).filter(_ % 2 == 0).reduce((total,element) => total+element)
 sumOfEven: Int = 2550
 
