@@ -1,0 +1,7 @@
+#Install SBT in Windows
+http://www.scala-sbt.org/0.13/docs/Installing-sbt-on-Windows.html
+Download msi installer and install it.
+
+To check it's installed or not 
+sbt sbt-version
+0.13.15
