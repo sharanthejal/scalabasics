@@ -48,6 +48,17 @@ m: List[Int] = List(20170101, 20170101, 20170101, 20170101, 20170101, 20170101, 
 scala> val sumOfEven= (1 to 100).filter(_ % 2 == 0).reduce((total,element) => total+element)
 sumOfEven: Int = 2550
 
+ val mulOfEven= (1 to 10).filter(_ % 2 == 0).reduce((total,element) => {
+println("total is :"+total+" element is :"+ element)
+total*element
+})
+
+total is :2 element is :4
+total is :8 element is :6
+total is :48 element is :8
+total is :384 element is :10
+mulOfEven: Int = 3840
+
 scala> val sumOfCompletedOrderId= os.filter(_.orderStatus.equalsIgnoreCase("complete")).map(_.orderId).reduce((e,t) => e+t)
 sumOfCompletedOrderId: Int = 37
 
