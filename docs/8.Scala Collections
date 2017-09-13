@@ -22,7 +22,7 @@ print(a)  // It will print the address actually, just for undestanding kept like
 123,2,3
 
 --Other way of updating data in mutable collection is as below. It will internally call the update method.
-a[2]=500
+a(2)=500
 a
 123,500,3
 
