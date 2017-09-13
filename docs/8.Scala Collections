@@ -28,6 +28,11 @@ a
 
 a= a :+ 4  //This will throw an error as initially Array is initialized using val. Instead initialize using var, it won't throw any error. Data will be added.
 
+-- Iterate over Array using for loop
+for(e <- a)
+println(e)
+
+
 -- Vector is a Immutable collection. List also immutable.
 
 var l=List(1,2,3)
