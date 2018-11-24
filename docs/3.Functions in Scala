@@ -44,3 +44,41 @@ def nCr(n: Int, r: Int)= {
   }
 fact(n)/(fact(n-r)*fact(r))
 }
+
+#Passing a function as parameter
+
+scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+def sum(func: Int => Int, lb: Int, ub: Int): Int = {
+var total=0
+for(element <- lb to ub)
+total+= func(element)
+total
+}
+
+
+// Exiting paste mode, now interpreting.
+
+sum: (func: Int => Int, lb: Int, ub: Int)Int
+
+scala> sum
+   def sum(func: Int => Int,lb: Int,ub: Int): Int
+
+scala> def id(i: Int) = i
+id: (i: Int)Int
+
+scala> def sqr(i :Int) = i*i
+sqr: (i: Int)Int
+
+scala> def cube(i :Int) = i * i * i
+cube: (i: Int)Int
+
+scala> sum(id, 1, 10)
+res0: Int = 55
+
+scala> sum(sqr, 1, 10)
+res1: Int = 385
+
+scala> sum(cube, 1, 10)
+res2: Int = 3025
