@@ -11,6 +11,15 @@ res *= e
 res
 }
 
+#Sum Function
+def sum(lb: Int, ub: Int) = {
+var total=0
+for(element<- lb to ub){
+total+= element
+}
+total
+}
+
 #Recursive Function
 def rFact(i: Int): Int = { if(i==1) 1 else i*rFact(i-1) }
 
