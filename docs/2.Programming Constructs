@@ -44,3 +44,24 @@ for(e <- i to j by 1)
 {
 println(e)
 }
+
+Range plus combination example --  count of even and odd numbers from 1 to 100 in scala
+scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+var totalEven=0
+var totalOdd=0
+for(element <- (1 to 100) ){
+if(element % 2==0) totalEven+= element else totalOdd+= element
+}
+println("Total Even count is :  "+totalEven)
+println("Total Odd count is : "+totalOdd)
+
+// Exiting paste mode, now interpreting.
+
+Total Even count is :  2550
+Total Odd count is : 2500
+totalEven: Int = 2550
+totalOdd: Int = 2500
+
+
