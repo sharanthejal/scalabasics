@@ -21,3 +21,8 @@ sum(sqr,1,10)
 sum(cube,1,10)
 3025
 
+scala> sum(i=> i, 1, 10)
+res3: Int = 55
+
+scala> sum(i=> i*2, 1, 10)
+res8: Int = 110
