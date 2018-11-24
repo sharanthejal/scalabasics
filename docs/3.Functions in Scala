@@ -19,6 +19,12 @@ total+= element
 }
 total
 }
+scala> sum(1,10)
+res6: Int = 55
+scala> sum(1,100)
+res7: Int = 5050
+scala> sum(1,1000)
+res8: Int = 500500
 
 #Recursive Function
 def rFact(i: Int): Int = { if(i==1) 1 else i*rFact(i-1) }
