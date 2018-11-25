@@ -58,3 +58,18 @@ object Combination {
 
 Running
 sbt "run 6 4"
+
+#ORDER CLASS WITH OBJECT OR SINGLETON CLASS
+
+class Order(var orderId: Int, var orderDate: String, var orderCustomerId: Int, var orderStatus: String){
+print("I am inside Order constructor")
+override def toString = "Order("+orderId+ ","+orderDate+","+orderCustomerId+","+orderStatus+")"
+}
+
+object Order{
+def apply(orderId: Int, orderDate: String, orderCustomerId: Int, orderStatus:String): Order = {
+new Order(orderId, orderDate, orderCustomerId, orderStatus)
+}
+}
+
+
