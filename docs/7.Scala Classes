@@ -118,3 +118,36 @@ oi: OrderItem = OrderItem(1,2,3,5,100.0,20.0)
 scala> val oi=new OrderItem(1,2,3,5,20)
 oi: OrderItem = OrderItem(1,2,3,5,100.0,20.0)
 
+#CASE CLASS
+scala> case  class Order(orderId: Int, orderDate: String,orderCustomerId: Int, orderStatus: String){
+     | print("I am inside Order constructor")
+     |  override def toString = "Order("+orderId+ ","+orderDate+","+orderCustomerId+","+orderStatus+")"
+     | }
+defined class Order
+
+scala> :javap -p Order
+Compiled from "<console>"
+public class Order implements scala.Product,scala.Serializable {
+  private final int orderId;
+  private final java.lang.String orderDate;
+  private final int orderCustomerId;
+  private final java.lang.String orderStatus;
+  public int orderId();
+  public java.lang.String orderDate();
+  public int orderCustomerId();
+  public java.lang.String orderStatus();
+  public java.lang.String toString();
+  public Order copy(int, java.lang.String, int, java.lang.String);
+  public int copy$default$1();
+  public java.lang.String copy$default$2();
+  public int copy$default$3();
+  public java.lang.String copy$default$4();
+  public java.lang.String productPrefix();
+  public int productArity();
+  public java.lang.Object productElement(int);
+  public scala.collection.Iterator<java.lang.Object> productIterator();
+  public boolean canEqual(java.lang.Object);
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+  public Order(int, java.lang.String, int, java.lang.String);
+}
